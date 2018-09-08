@@ -1,0 +1,9 @@
+{
+  "name": "monamine",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "monaco-editor": "^0.14.3"
+  }
+}
