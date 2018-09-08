@@ -1,10 +1,17 @@
-import * as monaco from './node_modules/monaco-editor/esm/vs/editor/editor.main.js'
+document.querySelectorAll('textarea').forEach(elem => {
+  // elem.style.visibility = 'hidden';
+  // elem.style.height = '0px';
+});
 
-monaco.editor.create(document.getElementsByClassName('jstEditor')[0], {
-  value: [
-    'function x() {',
-    '\tconsole.log("Hello world!");',
-    '}'
-  ].join('\n'),
-  language: 'javascript'
+// noinspection JSFileReferences
+require.config({ paths: { 'vs': window.__monacoEditorPath } });
+require(['vs/editor/editor.main'], function () {
+  monaco.editor.create(document.getElementsByClassName('jstEditor')[0], {
+    value: [
+      '# Monacalypse',
+      '',
+      'Convert textarea to monaco-editor'
+    ].join('\n'),
+    language: 'markdown'
+  });
 });
