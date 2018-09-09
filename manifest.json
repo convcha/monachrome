@@ -19,6 +19,8 @@
   "content_scripts": [
     {
       "matches": [
+        "http://*/*",
+        "https://*/*",
         "https://redmine.nihon-protec.com/*"
       ],
       "js": [

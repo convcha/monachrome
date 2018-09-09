@@ -1,5 +1,8 @@
 const script3 = document.createElement('script');
-script3.innerHTML = `var __monacoEditorPath = '${chrome.extension.getURL('node_modules/monaco-editor/min/vs/')}'`;
+script3.innerHTML = `
+var __monacoEditorPath = '${chrome.extension.getURL('node_modules/monaco-editor/min/vs/')}'
+var __monacoThemesPath = '${chrome.extension.getURL('node_modules/monaco-themes/')}'
+`;
 const head3 = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
 head3.insertBefore(script3, head3.lastChild);
 
