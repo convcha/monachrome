@@ -17,10 +17,12 @@ var __monachromeOptions = ${JSON.stringify(options)};
   // script tag for monaco loader
   const monacoLoader = document.createElement('script');
   monacoLoader.setAttribute("src", chrome.extension.getURL('node_modules/monaco-editor/min/vs/loader.js'));
+  monacoLoader.setAttribute('async', false);
   head.insertBefore(monacoLoader, head.lastChild);
 
   // script tag for content script logic
   const main = document.createElement('script');
   main.setAttribute("src", chrome.extension.getURL('main.js'));
+  main.setAttribute('async', false);
   head.insertBefore(main, head.lastChild);
 });
