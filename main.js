@@ -94,5 +94,26 @@ require(['vs/editor/editor.main'], function () {
     editor.getModel().onDidChangeContent(() => {
       textarea.value = model.getValue();
     });
+
+    // TODO: Context menu issue
+    // https://github.com/Microsoft/monaco-editor/issues/484#issuecomment-391246148
+    // const subscription = editor.onContextMenu((e) => {
+    //   const contextMenuElement = editor.getDomNode().querySelector(".monaco-menu-container");
+    //
+    //   if (contextMenuElement) {
+    //     const posY = (e.event.posy + contextMenuElement.clientHeight) > window.outerHeight
+    //       ? e.event.posy - contextMenuElement.clientHeight
+    //       : e.event.posy;
+    //
+    //     const posX = (e.event.posx + contextMenuElement.clientWidth) > window.outerWidth
+    //       ? e.event.posx - contextMenuElement.clientWidth
+    //       : e.event.posx;
+    //
+    //     contextMenuElement.style.position = "fixed";
+    //     contextMenuElement.style.top = Math.max(0, Math.floor(posY)) + "px";
+    //     contextMenuElement.style.left = Math.max(0, Math.floor(posX)) + "px";
+    //   }
+    // });
+    // subscription.dispose();
   });
 });
