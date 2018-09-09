@@ -1,10 +1,3 @@
-console.log('__monachromeOptions', window.__monachromeOptions);
-
-document.querySelectorAll('textarea').forEach(elem => {
-  // elem.style.visibility = 'hidden';
-  // elem.style.height = '0px';
-});
-
 // noinspection JSFileReferences
 require.config({ paths: { 'vs': window.__monachromePaths.monacoEditor } });
 require(['vs/editor/editor.main'], function () {
@@ -23,7 +16,7 @@ require(['vs/editor/editor.main'], function () {
     );
 
     const parent = textarea.parentNode;
-    const container = document.createElement('div');
+    // const container = document.createElement('div');
     // parent.insertBefore(container, textarea.nextSibling);
 
     monaco.editor.setTheme("vs");
@@ -38,10 +31,7 @@ require(['vs/editor/editor.main'], function () {
 
     // オブザーバインスタンスを作成
     const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        console.log('After mutate', textarea);
-        // console.log(mutation.type);
-        // console.log('size', { height: textarea.clientHeight, width: textarea.clientWidth });
+      mutations.forEach(() => {
         editor.layout({ height: textarea.clientHeight, width: textarea.clientWidth });
       });
     });
@@ -70,7 +60,7 @@ require(['vs/editor/editor.main'], function () {
     // };
 
     // console.log('size', { height: textarea.clientHeight, width: textarea.clientWidth });
-    const clientRect = textarea.getBoundingClientRect();
+    // const clientRect = textarea.getBoundingClientRect();
     // console.log('clientRect', { left: clientRect.left, top: clientRect.top });
     editor.layout({ height: textarea.clientHeight, width: textarea.clientWidth });
     // console.log('editor.getConfiguration()', editor.getConfiguration());
