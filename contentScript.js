@@ -1,6 +1,4 @@
-const optionKeys = ['minimap', 'lineNumbers', 'language'];
-
-chrome.storage.sync.get(optionKeys, (options) => {
+chrome.storage.sync.get('monachrome', (optionsRoot) => {
   const head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
 
   // script tag for global variables
@@ -10,7 +8,7 @@ var __monachromePaths = {
   monacoEditor: '${chrome.extension.getURL('node_modules/monaco-editor/min/')}',
   monacoThemes: '${chrome.extension.getURL('node_modules/monaco-themes/')}',
 }
-var __monachromeOptions = ${JSON.stringify(options)};
+var __monachromeOptions = ${JSON.stringify(optionsRoot.monachrome)};
 `;
   head.insertBefore(global, head.lastChild);
 

@@ -1,28 +1,27 @@
-// minimap
 const minimap = document.getElementById('js-option-minimap');
-minimap.addEventListener('click', () => {
-  chrome.storage.sync.set({ minimap: minimap.checked }, () => {
-    notify();
-  })
-});
-
-// lineNumbers
+const minimapLabel = document.getElementById('js-option-minimap-label');
 const lineNumbers = document.getElementById('js-option-line-numbers');
-lineNumbers.addEventListener('click', () => {
-  chrome.storage.sync.set({ lineNumbers: lineNumbers.checked ? 'on' : 'off' }, () => {
-    notify();
-  })
-});
-
-// language
 const language = document.getElementById('js-option-language');
-language.addEventListener('change', () => {
-  const idx = language.selectedIndex;
-  const val = language.options[idx].value;
-  chrome.storage.sync.set({ language: val }, () => {
-    notify();
+
+const restoreOptions = () => {
+  chrome.storage.sync.get('monachrome', function (optionsRoot) {
+    const monachrome = optionsRoot.monachrome;
+    if (monachrome.minimap) {
+      minimap.MaterialCheckbox.check();
+    } else {
+      minimap.MaterialCheckbox.uncheck();
+    }
+    // minimap.setAttribute('checked', monachrome.minimap);
+  });
+};
+
+const setOption = option => {
+  chrome.storage.sync.get('monachrome', optionsRoot => {
+    chrome.storage.sync.set({ monachrome: { ...optionsRoot.monachrome, ...option } }, () => {
+      notify();
+    })
   })
-});
+};
 
 const notify = () => {
   const notification = document.querySelector('.mdl-js-snackbar');
@@ -32,3 +31,19 @@ const notify = () => {
   };
   notification.MaterialSnackbar.showSnackbar(data);
 };
+
+document.addEventListener('DOMContentLoaded', restoreOptions);
+
+minimap.addEventListener('click', () => {
+  setOption({ minimap: minimap.checked });
+});
+
+lineNumbers.addEventListener('click', () => {
+  setOption({ lineNumbers: lineNumbers.checked ? 'on' : 'off' });
+});
+
+language.addEventListener('change', () => {
+  const idx = language.selectedIndex;
+  const val = language.options[idx].value;
+  setOption({ language: val });
+});

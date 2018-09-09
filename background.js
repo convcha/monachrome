@@ -5,7 +5,7 @@ const defaultOptions = {
 };
 
 chrome.runtime.onInstalled.addListener(function () {
-  chrome.storage.sync.set(defaultOptions, () => {
+  chrome.storage.sync.set({ monachrome: defaultOptions }, () => {
     console.log('defaultOptions', defaultOptions);
   });
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
