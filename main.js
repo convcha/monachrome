@@ -1,3 +1,4 @@
+// TODO: Uncaught ReferenceError: require is not defined
 // noinspection JSFileReferences
 require.config({ paths: { 'vs': window.__monachromePaths.monacoEditor } });
 require(['vs/editor/editor.main'], function () {
@@ -68,7 +69,6 @@ require(['vs/editor/editor.main'], function () {
     const editorDom = editor.getDomNode();
     // console.log('editorDom.getBoundingClientRect()', editorDom.getBoundingClientRect());
 
-    console.log('Before mutate', textarea);
     textarea.insertAdjacentElement('afterend', editorDom);
     textarea.style.display = 'none';
     // textarea.style.visibility = 'collapse';
