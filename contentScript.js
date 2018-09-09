@@ -7,7 +7,7 @@ chrome.storage.sync.get(optionKeys, (options) => {
   const global = document.createElement('script');
   global.innerHTML = `
 var __monachromePaths = {
-  monacoEditor: '${chrome.extension.getURL('node_modules/monaco-editor/min/vs/')}',
+  monacoEditor: '${chrome.extension.getURL('node_modules/monaco-editor/min/')}',
   monacoThemes: '${chrome.extension.getURL('node_modules/monaco-themes/')}',
 }
 var __monachromeOptions = ${JSON.stringify(options)};

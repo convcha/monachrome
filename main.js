@@ -1,6 +1,20 @@
 // TODO: Uncaught ReferenceError: require is not defined
 // noinspection JSFileReferences
-require.config({ paths: { 'vs': window.__monachromePaths.monacoEditor } });
+require.config({ paths: { 'vs': window.__monachromePaths.monacoEditor + 'vs/' } });
+
+// Enable worker for cross-domain
+// https://github.com/Microsoft/monaco-editor/blob/master/docs/integrate-amd-cross.md#option-1-use-a-data-worker-uri
+window.MonacoEnvironment = {
+  getWorkerUrl: () => {
+    return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+        self.MonacoEnvironment = {
+          baseUrl: '${window.__monachromePaths.monacoEditor}'
+        };
+        importScripts('${window.__monachromePaths.monacoEditor}vs/base/worker/workerMain.js');`
+    )}`;
+  }
+};
+
 require(['vs/editor/editor.main'], function () {
   // const parseTmTheme = require(window.__monacoThemesPath + 'dist/monaco-themes.js').parseTmTheme;
   fetch(window.__monachromePaths.monacoThemes + 'themes/Solarized-light.json')
