@@ -27,7 +27,7 @@ require(['vs/editor/editor.main'], function () {
   document.querySelectorAll('textarea').forEach(textarea => {
     const model = monaco.editor.createModel(
       textarea.value,
-      'markdown'
+      window.__monachromeOptions.language
     );
 
     const parent = textarea.parentNode;

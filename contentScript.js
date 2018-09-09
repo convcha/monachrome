@@ -1,4 +1,4 @@
-const optionKeys = ['minimap', 'lineNumbers'];
+const optionKeys = ['minimap', 'lineNumbers', 'language'];
 
 chrome.storage.sync.get(optionKeys, (options) => {
   const head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;

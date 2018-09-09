@@ -14,6 +14,16 @@ lineNumbers.addEventListener('click', () => {
   })
 });
 
+// language
+const language = document.getElementById('js-option-language');
+language.addEventListener('change', () => {
+  const idx = language.selectedIndex;
+  const val = language.options[idx].value;
+  chrome.storage.sync.set({ language: val }, () => {
+    notify();
+  })
+});
+
 const notify = () => {
   const notification = document.querySelector('.mdl-js-snackbar');
   const data = {

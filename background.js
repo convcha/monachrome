@@ -1,6 +1,7 @@
 const defaultOptions = {
   minimap: true,
-  lineNumbers: 'on'
+  lineNumbers: 'on',
+  language: 'plaintext'
 };
 
 chrome.runtime.onInstalled.addListener(function () {
