@@ -51,5 +51,6 @@
     "48": "images/get_started48.png",
     "128": "images/get_started128.png"
   },
+  "content_security_policy": "script-src 'self' https://code.getmdl.io; object-src 'self'",
   "manifest_version": 2
 }

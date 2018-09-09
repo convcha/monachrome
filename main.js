@@ -1,13 +1,15 @@
+console.log('__monachromeOptions', window.__monachromeOptions);
+
 document.querySelectorAll('textarea').forEach(elem => {
   // elem.style.visibility = 'hidden';
   // elem.style.height = '0px';
 });
 
 // noinspection JSFileReferences
-require.config({ paths: { 'vs': window.__monacoEditorPath } });
+require.config({ paths: { 'vs': window.__monachromePaths.monacoEditor } });
 require(['vs/editor/editor.main'], function () {
   // const parseTmTheme = require(window.__monacoThemesPath + 'dist/monaco-themes.js').parseTmTheme;
-  fetch(window.__monacoThemesPath + 'themes/Solarized-light.json')
+  fetch(window.__monachromePaths.monacoThemes + 'themes/Solarized-light.json')
     .then(data => data.json())
     .then(data => {
       monaco.editor.defineTheme('solarized-light', data);
@@ -27,7 +29,11 @@ require(['vs/editor/editor.main'], function () {
     monaco.editor.setTheme("vs");
 
     const editor = monaco.editor.create(parent, {
-      model: model
+      model: model,
+      lineNumbers: window.__monachromeOptions.lineNumbers,
+      minimap: {
+        enabled: window.__monachromeOptions.minimap
+      }
     });
 
     // オブザーバインスタンスを作成

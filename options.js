@@ -1,17 +1,24 @@
-let page = document.getElementById('buttonDiv');
-const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
+// minimap
+const minimap = document.getElementById('js-option-minimap');
+minimap.addEventListener('click', () => {
+  chrome.storage.sync.set({ minimap: minimap.checked }, () => {
+    notify();
+  })
+});
 
-function constructOptions(kButtonColors) {
-  for (let item of kButtonColors) {
-    let button = document.createElement('button');
-    button.style.backgroundColor = item;
-    button.addEventListener('click', function () {
-      chrome.storage.sync.set({ color: item }, function () {
-        console.log('color is ' + item);
-      })
-    });
-    page.appendChild(button);
-  }
-}
+// lineNumbers
+const lineNumbers = document.getElementById('js-option-line-numbers');
+lineNumbers.addEventListener('click', () => {
+  chrome.storage.sync.set({ lineNumbers: lineNumbers.checked ? 'on' : 'off' }, () => {
+    notify();
+  })
+});
 
-constructOptions(kButtonColors);
+const notify = () => {
+  const notification = document.querySelector('.mdl-js-snackbar');
+  const data = {
+    message: 'Confituration changed.',
+    timeout: 700,
+  };
+  notification.MaterialSnackbar.showSnackbar(data);
+};
