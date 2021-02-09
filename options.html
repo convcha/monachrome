@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monachrome Options</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/picnic">
+</head>
+<body>
+<nav class="demo">
+  <a href="#" class="brand">
+    <span>Monachrome Options</span>
+  </a>
+  <div class="menu">
+    <a href="#" class="button icon-puzzle js-save">Save</a>
+  </div>
+</nav>
+
+<main style="padding: 70px 30px 0;">
+  <form>
+    <div class="flex">
+      <div style="padding-right: 30px">
+        <h1 style="padding: 0;">Options</h1>
+
+        <h3>Default Language</h3>
+        <select id="js-default-language"></select>
+
+        <h3>Minimap</h3>
+        <label>
+          <input type='radio' name="minimap" value="true">
+          <span class="checkable">On</span>
+        </label>
+        <label>
+          <input type='radio' name="minimap" value="false">
+          <span class="checkable">Off</span>
+        </label>
+
+        <h3>Line Number</h3>
+        <label>
+          <input type='radio' name="linenumber" value="on">
+          <span class="checkable">On</span>
+        </label>
+        <label>
+          <input type='radio' name="linenumber" value="off">
+          <span class="checkable">Off</span>
+        </label>
+      </div>
+      <div class="third">
+        <h1 style="padding: 0;">Preview</h1>
+        <div id="js-preview-container" style="width:100%;height:100%;border:1px solid grey"></div>
+      </div>
+    </div>
+  </form>
+</main>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
